@@ -7,9 +7,9 @@ uniform vec3 color : source_color;
 uniform vec3 emission : source_color;
 
 void fog() {
-	vec4 ni = vec4((WORLD_POSITION+ vec3(0, 0, TIME*15.0))/40.0, 1.0);
+	vec4 ni = vec4((WORLD_POSITION+ vec3(0, 0, TIME*35.0))/40.0, 1.0);
 	float no = (snoise(ni)*0.6 + snoise(ni*2.0)*0.3 + snoise(ni*4.0)*0.1);
-	DENSITY = clamp(no / 5.0 + 0.2 - WORLD_POSITION.y/2000.0, 0, 0.5);
+	DENSITY = clamp(no / 5.0 + 0.2 - WORLD_POSITION.y/2000.0, 0, 0.3);
 	ALBEDO = color;
 	EMISSION = emission;
 }
