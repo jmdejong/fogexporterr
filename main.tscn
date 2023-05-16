@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://d171edddeojyu"]
+
+[ext_resource type="Shader" path="res://fog.gdshader" id="1_6fp8q"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_wfeat"]
+size = Vector3(10, 1, 10)
+
+[sub_resource type="SphereMesh" id="SphereMesh_phdfa"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6na30"]
+shader = ExtResource("1_6fp8q")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/emission = null
+
+[sub_resource type="Environment" id="Environment_e2x4f"]
+volumetric_fog_enabled = true
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.54225, 7.49404)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.173748, 0)
+mesh = SubResource("BoxMesh_wfeat")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.215264, 0.976556, 0, -0.976556, 0.215264, 0, 7.00379, 0)
+light_color = Color(0.647059, 1, 1, 1)
+light_energy = 0.4
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.30447, 0.910686, 2.31422)
+mesh = SubResource("SphereMesh_phdfa")
+
+[node name="FogVolume" type="FogVolume" parent="."]
+shape = 4
+material = SubResource("ShaderMaterial_6na30")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_e2x4f")
